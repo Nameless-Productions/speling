@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  stuff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - run: |
+          pnpm install --frozen-lockfile
+          npx prisma migrate dev
+          npx prisma generate
+          pnpm lint
+          pnpm check
+          pnpm build
+        env:
+          DATABASE_URL: file:./database.db
+          SECRET: meowmeowmeow
+          DISCORD_CLIENT: meow
+          DISCORD_SECRET: meow
+          DISCORD_URL: meow
+          DISCORD_REDIRECT: meow
