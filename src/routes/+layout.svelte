@@ -9,6 +9,6 @@
 
 <NavBar user={data.user} />
 
-<main class="m-2">
+<main class="m-2 flex-1 flex flex-col">
 	{@render children()}
 </main>
