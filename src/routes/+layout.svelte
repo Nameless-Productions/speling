@@ -5,4 +5,8 @@
 </script>
 
 <svelte:head><title>Speling</title></svelte:head>
-{@render children()}
+
+
+<main class="m-2">
+	{@render children()}
+</main>
