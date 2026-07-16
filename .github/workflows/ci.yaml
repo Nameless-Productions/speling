@@ -17,8 +17,6 @@ jobs:
 
       - run: |
           pnpm install --frozen-lockfile
-          npx prisma migrate dev
-          npx prisma generate
           pnpm lint
           pnpm check
           pnpm build
