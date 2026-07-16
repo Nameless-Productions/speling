@@ -7,7 +7,6 @@
 
 <svelte:head><title>Speling</title></svelte:head>
 
-
 <NavBar user={data.user} />
 
 <main class="m-2">
