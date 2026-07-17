@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 
-	let { user }: { user: { id: number, username: string } | undefined } = $props();
+	let { user }: { user: { id: number; username: string } | undefined } = $props();
 
 	const btnClass = 'text-lg hover:font-bold duration-200';
 </script>
