@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import type { User } from '../types/user';
 
 	let { user }: { user: { id: number, username: string } | undefined } = $props();
 
