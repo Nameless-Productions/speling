@@ -2,7 +2,7 @@
 	import { resolve } from '$app/paths';
 	import type { User } from '../types/user';
 
-	let { user }: { user: User | null } = $props();
+	let { user }: { user: { id: number, username: string } | undefined } = $props();
 
 	const btnClass = 'text-lg hover:font-bold duration-200';
 </script>
