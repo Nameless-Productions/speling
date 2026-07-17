@@ -5,7 +5,7 @@ import { redirect, type Handle } from "@sveltejs/kit";
 export const handle: Handle = async ({event, resolve}) => {
     const pathname = event.url.pathname.replace(/\/{2,}/g, '/').replace(/\/+$/, '') || '/';
 
-    if (pathname.startsWith("/feed") || pathname.startsWith("/login") || pathname === "/") {
+    if (pathname.startsWith("/feed") || pathname.startsWith("/login") || pathname.startsWith("/oauth/") || pathname === "/") {
         return await resolve(event)
     }
 
