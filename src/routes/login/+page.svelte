@@ -3,12 +3,12 @@
 </script>
 
 <div class="flex h-screen items-center justify-center">
-	<div class="border-2 p-5 rounded-xl">
-		<p class="font-bold text-lg">Sign in to Speling</p>
+	<div class="rounded-xl border-2 p-5">
+		<p class="text-lg font-bold">Sign in to Speling</p>
 		<br />
-		<a href={data.discord} class="p-1 bg-blue-600 rounded-xl hover:bg-blue-800 duration-200"
+		<a href={data.discord} class="rounded-xl bg-blue-600 p-1 duration-200 hover:bg-blue-800"
 			>Sign in with Discord</a
 		>
-		<p class="text-sm text-gray-600 text-center mt-2">More sign in <br />options later (or not)</p>
+		<p class="mt-2 text-center text-sm text-gray-600">More sign in <br />options later (or not)</p>
 	</div>
 </div>
