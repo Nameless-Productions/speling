@@ -20,9 +20,9 @@ export const actions: Actions = {
         const form = await superValidate(request, zod4(postSchema));
         if (!form.valid) return fail(400, {form});
 
-        const dictionary = new Typo("en_US");
-
-        const contentArr = form.data.content.split(" ");
+        const dictionary = new Typo("en_US");   
+        //                                            removes all punctuation marks
+        const contentArr = form.data.content.replace(/[!.,;:?"'()[\]{}<>/\\\-_@#$%^&*+=~`|]/g, " ").split(" ");
         let typos = 0;
 
         for (const word of contentArr) {
