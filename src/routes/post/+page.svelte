@@ -8,7 +8,7 @@
 
 <div class="flex h-screen items-center justify-center">
     <div class="border-2 border-white rounded-xl p-5">
-        <form action="?/post" use:enhance>
+        <form action="?/post" method="post" use:enhance>
             <textarea name="content" placeholder="What's on your mind?" bind:value={$form.content} class="border border-gray-500 p-1 rounded-xl w-100 h-50" required></textarea>
             {#if $errors.content}
                 <p class="text-red-500">{$errors.content}</p>
