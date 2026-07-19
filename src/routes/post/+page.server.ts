@@ -17,7 +17,7 @@ export const actions: Actions = {
     post: async ({request, locals}) => {
         if (!locals.User) return redirect(303, new URL("/login", request.url));
 
-        const form = await superValidate(zod4(postSchema));
+        const form = await superValidate(request, zod4(postSchema));
         if (!form.valid) return fail(400, {form});
 
         const dictionary = new Typo("en_US");
@@ -43,6 +43,6 @@ export const actions: Actions = {
             }
         });
 
-        return redirect(303, new URL(`/post/${post.id}`))
+        return redirect(303, new URL(`/post/${post.id}`, request.url))
     }
 }
