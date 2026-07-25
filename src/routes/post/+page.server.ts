@@ -43,6 +43,19 @@ export const actions: Actions = {
 			}
 		});
 
+		const user = await db.user.findUnique({
+			where: {
+				id: locals.User.id
+			}
+		});
+		if (!user) return redirect(303, new URL("/login", request.url));
+		await db.user.update({
+			where: user,
+			data: {
+				typoCount: user.typoCount + typos
+			}
+		})
+
 		return redirect(303, new URL(`/post/${post.id}`, request.url));
 	}
 };
