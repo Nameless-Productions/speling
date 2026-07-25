@@ -38,7 +38,6 @@ export const actions: Actions = {
 			data: {
 				authorID: locals.User.id,
 				typoCount: typos,
-				likes: 0,
 				content: form.data.content,
 				createdAt: new Date()
 			}

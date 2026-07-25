@@ -23,7 +23,18 @@ model Post {
   id Int @id @default(autoincrement())
   authorID Int
   typoCount Int
-  likes Int
   content String
   createdAt DateTime
+}
+
+model Like {
+  id Int @id @default(autoincrement())
+  userID Int
+  postID Int
+}
+
+model Comment {
+  id Int @id @default(autoincrement())
+  authorID Int
+  content String
 }
