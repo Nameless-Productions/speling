@@ -4,29 +4,28 @@
 	import { onMount } from 'svelte';
 
 	let posts = $state<PostType[]>([]);
-	let typosFirst = $state<"false" | "true">("true");
+	let typosFirst = $state<'false' | 'true'>('true');
 	let page = $state(0);
 
 	onMount(async () => {
 		const res = await fetch(`/api/posts?typosFirst=${typosFirst}&page=${page}`);
 		if (!res.ok) return;
 
-		const resJson = await res.json() as PostType[];
+		const resJson = (await res.json()) as PostType[];
 
 		posts = resJson;
-	})
+	});
 
 	$effect(() => {
 		(async () => {
 			const res = await fetch(`/api/posts?typosFirst=${typosFirst}&page=${page}`);
 			if (!res.ok) return;
 
-			const resJson = await res.json() as PostType[];
+			const resJson = (await res.json()) as PostType[];
 
 			posts = resJson;
-		})()
-	})
-
+		})();
+	});
 </script>
 
 <div class="flex flex-col items-center">
@@ -49,6 +48,10 @@
 	{/each}
 
 	{#if posts.length >= 100}
-		<button type="button" onclick={() => page += 1} class="text-blue-600 text-center underline cursor-pointer">Load more</button>
+		<button
+			type="button"
+			onclick={() => (page += 1)}
+			class="cursor-pointer text-center text-blue-600 underline">Load more</button
+		>
 	{/if}
 </div>
