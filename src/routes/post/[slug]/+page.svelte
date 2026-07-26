@@ -3,7 +3,7 @@
 </script>
 
 <div class="flex h-screen items-center justify-center">
-    <div class="border-2 border-gray-600 rounded-xl p-3">
+    <div class="border-2 border-gray-600 rounded-xl p-3 max-w-md w-full">
         <p class="font-bold">{data.author.username}</p>
         <br>
         <p>{data.post.content}</p>
