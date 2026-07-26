@@ -8,6 +8,14 @@ export const GET: RequestHandler = async ({locals, url}) => {
     const postID = Number(url.searchParams.get("post"));
     if (!postID || isNaN(postID)) return error(400, "Post ID is null or not a number");
 
+    const userLikes = await db.like.findMany({
+        where: {
+            userID: locals.User.id,
+            postID
+        }
+    });
+    if (userLikes.length !== 0) return error(400, "User already likes this post")
+
     await db.like.create({
         data: {
             userID: locals.User.id,
