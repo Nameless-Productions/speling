@@ -48,13 +48,13 @@ export const actions: Actions = {
 				id: locals.User.id
 			}
 		});
-		if (!user) return redirect(303, new URL("/login", request.url));
+		if (!user) return redirect(303, new URL('/login', request.url));
 		await db.user.update({
 			where: user,
 			data: {
 				typoCount: user.typoCount + typos
 			}
-		})
+		});
 
 		return redirect(303, new URL(`/post/${post.id}`, request.url));
 	}
