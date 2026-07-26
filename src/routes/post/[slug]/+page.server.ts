@@ -26,5 +26,24 @@ export const load: PageServerLoad = async ({ params }) => {
 		}
 	});
 
-	return { post, author, likes: likes.length };
+	const commentsDB = await db.comment.findMany({
+		where: {
+			post: post.id
+		}
+	});
+
+	const comments: { author: string; content: string }[] = [];
+
+	for (const comment of commentsDB) {
+		const authorDB = await db.user.findUnique({
+			where: {
+				id: comment.id
+			}
+		});
+		if (!authorDB) continue;
+
+		comments.push({ author: authorDB.username, content: comment.content });
+	}
+
+	return { post, author, likes: likes.length, comments };
 };
