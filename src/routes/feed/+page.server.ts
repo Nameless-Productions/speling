@@ -4,7 +4,7 @@ import type { PageServerLoad } from "./$types";
 export const load: PageServerLoad = async ({url}) => {
     const typosFirst = url.searchParams.get("typosFirst") === "true" ? true : false;
 
-    let posts: {author: string, content: string, likes: number, date: Date}[] = []
+    const posts: {author: string, content: string, likes: number, date: Date}[] = []
 
     const postsDB = await db.post.findMany({
         take: 100,
