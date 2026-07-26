@@ -9,8 +9,8 @@
             <p>{post.content}</p>
 
             <div class="flex">
-                <p class="p-0.5 bg-blue-600 rounded-l-full my-2 w-1/2">Typos: {post.typos}</p>
-                <p class="p-0.5 bg-red-600 rounded-r-full my-2 w-1/2">Likes: {post.likes}</p>
+                <p class="p-0.5 bg-blue-600 rounded-l-full my-2 w-1/2 text-center">Typos: {post.typos}</p>
+                <p class="p-0.5 bg-red-600 rounded-r-full my-2 w-1/2 text-center">Likes: {post.likes}</p>
             </div>
         </div>
     {/each}
