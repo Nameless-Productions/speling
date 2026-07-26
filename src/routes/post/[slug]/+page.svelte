@@ -10,7 +10,7 @@
 		<br />
         <div class="flex">
             <p class="p-0.5 bg-blue-600 rounded-l-full my-2 w-1/2 text-center">Typos: {data.post.typoCount}</p>
-            <p class="p-0.5 bg-red-600 hover:bg-red-500 duration-300 cursor-pointer rounded-r-full my-2 w-1/2 text-center">Likes: {data.likes}</p>
+            <p class="p-0.5 bg-red-600 rounded-r-full my-2 w-1/2 text-center">Likes: {data.likes}</p>
         </div>
 	</div>
 </div>
