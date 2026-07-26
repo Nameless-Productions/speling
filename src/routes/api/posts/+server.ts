@@ -1,16 +1,22 @@
+import { error, json } from '@sveltejs/kit';
+import type { RequestHandler } from './$types';
 import { db } from '$lib/db';
 import type { Post } from '$lib/types/post';
-import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ url }) => {
+const pageSize = 100;
+
+export const GET: RequestHandler = async ({ url }) => {
 	const typosFirst = url.searchParams.get('typosFirst') === 'true' ? true : false;
+	const page = Number(url.searchParams.get('page') ?? 0);
 
-	const posts: Post[] = [];
+	if (isNaN(page)) return error(400, 'Page is NaN');
 
 	const postsDB = await db.post.findMany({
-		take: 100,
+		take: page === 0 ? pageSize : page * pageSize,
 		orderBy: [{ typoCount: typosFirst ? 'desc' : 'asc' }, { createdAt: 'desc' }]
 	});
+
+	const posts: Post[] = [];
 
 	for (const post of postsDB) {
 		const likes = await db.like.findMany({
@@ -56,5 +62,5 @@ export const load: PageServerLoad = async ({ url }) => {
 		});
 	}
 
-	return { posts };
+	return json(posts);
 };
