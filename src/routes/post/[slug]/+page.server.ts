@@ -42,7 +42,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		});
 		if (!authorDB) continue;
 
-		comments.push({ author: authorDB, content: comment.content });
+		comments.push({ author: authorDB.username, content: comment.content });
 	}
 
 	return { post, author, likes: likes.length, comments };
