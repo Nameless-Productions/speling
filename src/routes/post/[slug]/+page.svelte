@@ -9,7 +9,7 @@
 		content: data.post.content,
 		likes: data.likes,
 		date: data.post.createdAt,
-		comments: [],
+		comments: data.comments,
 		typos: data.post.typoCount,
 		id: data.post.id
 	}
