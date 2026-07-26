@@ -20,5 +20,11 @@ export const load: PageServerLoad = async ({ params }) => {
 	});
 	if (!author) return error(404, 'Post author not found');
 
-	return { post, author };
+	const likes = await db.like.findMany({
+		where: {
+			postID: post.id
+		}
+	});
+
+	return { post, author, likes: likes.length };
 };
