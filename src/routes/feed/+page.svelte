@@ -47,4 +47,8 @@
 			<Post {post} />
 		</div>
 	{/each}
+
+	{#if posts.length >= 100}
+		<button type="button" onclick={() => page += 1} class="text-blue-600 text-center underline cursor-pointer">Load more</button>
+	{/if}
 </div>
