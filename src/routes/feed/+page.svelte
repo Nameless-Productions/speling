@@ -1,24 +1,21 @@
 <script lang="ts">
     let {data} = $props();
+    let posts = $state(data.posts)
 
     async function like(postID: number) {
-        const res = await fetch(`/api/like?post=${postID}`);
-        if (!res.ok) return;
+		const res = await fetch(`/api/like?post=${postID}`);
+		if (!res.ok) return;
 
-        const resJson = await res.json() as {likes: number};
+		const resJson = await res.json() as { likes: number };
 
-        let i = 0;
-        for (const post of data.posts) {
-            if (post.id === postID) {
-                data.posts[i].likes = resJson.likes
-            }
-            i += 1;
-        }
+		posts = posts.map(post =>
+			post.id === postID ? { ...post, likes: resJson.likes } : post
+		);
     }
 </script>
 
 <div class="flex flex-col items-center">
-    {#each data.posts as post (post.date)}
+    {#each posts as post (post.date)}
         <div class="border-b border-t border-b-white border-t-white max-w-sm w-full p-2 mx-auto">
             <p class="font-bold">{post.author}</p>
             <p>{post.content}</p>
