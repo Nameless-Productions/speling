@@ -8,8 +8,9 @@
 		<br />
 		<p>{data.post.content}</p>
 		<br />
-		<p class="w-full rounded-full bg-blue-500 p-0.5 text-center font-bold">
-			Typos: {data.post.typoCount}
-		</p>
+        <div class="flex">
+            <p class="p-0.5 bg-blue-600 rounded-l-full my-2 w-1/2 text-center">Typos: {data.post.typoCount}</p>
+            <p class="p-0.5 bg-red-600 hover:bg-red-500 duration-300 cursor-pointer rounded-r-full my-2 w-1/2 text-center">Likes: {data.likes}</p>
+        </div>
 	</div>
 </div>
