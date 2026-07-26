@@ -8,10 +8,10 @@ export const load: PageServerLoad = async ({url}) => {
 
     const postsDB = await db.post.findMany({
         take: 100,
-        orderBy: {
-            createdAt: "desc",
-            typoCount: typosFirst ? "desc" : "asc"
-        }
+        orderBy: [
+            { typoCount: typosFirst ? "desc" : "asc" },
+            { createdAt: "desc" }
+        ]
     });
 
     for (const post of postsDB) {
