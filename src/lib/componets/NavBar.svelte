@@ -11,7 +11,6 @@
 	<p class="-ml-4.5 text-sm text-gray-600">(yes it's like that)</p>
 
 	<a href={resolve('/leaderboard')} class="ml-auto {btnClass}">Leaderboard</a>
-	<a href={resolve('/how')} class={btnClass}>How it works</a>
 	{#if !user}
 		<a
 			href={resolve('/login')}
@@ -20,5 +19,6 @@
 		>
 	{:else}
 		<a href={resolve('/feed')} class={btnClass}>Scroll</a>
+		<a href={resolve('/post')} class={btnClass}>Post</a>
 	{/if}
 </nav>
