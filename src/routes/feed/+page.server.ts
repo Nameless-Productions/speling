@@ -4,7 +4,7 @@ import type { PageServerLoad } from "./$types";
 export const load: PageServerLoad = async ({url}) => {
     const typosFirst = url.searchParams.get("typosFirst") === "true" ? true : false;
 
-    const posts: {author: string, content: string, likes: number, date: Date, comments: {author: string, content: string}[], typos: number}[] = []
+    const posts: {author: string, content: string, likes: number, date: Date, comments: {author: string, content: string}[], typos: number, id: number}[] = []
 
     const postsDB = await db.post.findMany({
         take: 100,
@@ -47,7 +47,7 @@ export const load: PageServerLoad = async ({url}) => {
             comments.push({author: author.username, content: comment.content})
         }
 
-        posts.push({author: user.username, content: post.content, likes: likes.length, date: post.createdAt, comments, typos: post.typoCount})
+        posts.push({author: user.username, content: post.content, likes: likes.length, date: post.createdAt, comments, typos: post.typoCount, id: post.id})
     }
 
     return {posts}
