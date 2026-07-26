@@ -43,7 +43,7 @@
 
 	{#each sortedPosts as post (post.date)}
 		<div class="mx-auto w-full max-w-sm border-t border-b border-t-white border-b-white p-2">
-		<Post post={post}/>
+			<Post {post} />
 		</div>
 	{/each}
 </div>

@@ -12,11 +12,11 @@
 		comments: data.comments,
 		typos: data.post.typoCount,
 		id: data.post.id
-	}
+	};
 </script>
 
 <div class="flex h-screen items-center justify-center">
 	<div class="w-full max-w-md rounded-xl border-2 border-gray-600 p-3">
-		<Post post={post}/>
+		<Post {post} />
 	</div>
 </div>

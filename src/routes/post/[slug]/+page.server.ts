@@ -32,7 +32,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		}
 	});
 
-	const comments: {author: string, content: string}[] = [];
+	const comments: { author: string; content: string }[] = [];
 
 	for (const comment of commentsDB) {
 		const authorDB = await db.user.findUnique({
@@ -42,7 +42,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		});
 		if (!authorDB) continue;
 
-		comments.push({author: authorDB, content: comment.content})
+		comments.push({ author: authorDB, content: comment.content });
 	}
 
 	return { post, author, likes: likes.length, comments };
