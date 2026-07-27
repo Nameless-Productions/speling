@@ -6,4 +6,5 @@ export interface Post {
 	comments: { author: string; content: string }[];
 	typos: number;
 	id: number;
+	commentCount: number;
 }

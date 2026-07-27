@@ -1,10 +1,15 @@
-import { error } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
+import { error, redirect } from '@sveltejs/kit';
+import type { Actions, PageServerLoad } from './$types';
 import { db } from '$lib/db';
+import { fail, superValidate } from 'sveltekit-superforms';
+import { zod4 } from 'sveltekit-superforms/adapters';
+import { commentSchema } from '$lib/types/commentSchema';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const id = Number(params.slug);
 	if (isNaN(id)) return error(400, 'ID is NaN');
+
+	const form = await superValidate(zod4(commentSchema));
 
 	const post = await db.post.findUnique({
 		where: {
@@ -37,7 +42,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	for (const comment of commentsDB) {
 		const authorDB = await db.user.findUnique({
 			where: {
-				id: comment.id
+				id: comment.authorID
 			}
 		});
 		if (!authorDB) continue;
@@ -45,5 +50,26 @@ export const load: PageServerLoad = async ({ params }) => {
 		comments.push({ author: authorDB.username, content: comment.content });
 	}
 
-	return { post, author, likes: likes.length, comments };
+	return { post, author, likes: likes.length, comments, form };
+};
+
+export const actions: Actions = {
+	comment: async ({ request, locals, params }) => {
+		if (!locals.User) return redirect(303, new URL('/login', request.url));
+		const postID = Number(params.slug);
+
+		const form = await superValidate(request, zod4(commentSchema));
+
+		if (!form.valid) return fail(400, { form });
+
+		await db.comment.create({
+			data: {
+				post: postID,
+				authorID: locals.User.id,
+				content: form.data.content
+			}
+		});
+
+		return redirect(303, new URL(`/post/${params.slug}`, request.url));
+	}
 };

@@ -58,7 +58,8 @@ export const GET: RequestHandler = async ({ url }) => {
 			date: post.createdAt,
 			comments,
 			typos: post.typoCount,
-			id: post.id
+			id: post.id,
+			commentCount: comments.length
 		});
 	}
 
