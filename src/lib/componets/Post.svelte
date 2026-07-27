@@ -1,8 +1,24 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import type { Post } from '$lib/types/post';
+	import { superForm, type SuperValidated } from 'sveltekit-superforms';
 
-	let { post, showComments }: { post: Post; showComments: boolean } = $props();
+	let {
+		post,
+		showComments,
+		formThing
+	}: {
+		post: Post;
+		showComments: boolean;
+		formThing?: SuperValidated<
+			{
+				content: string;
+			},
+			{
+				content: string;
+			}
+		>;
+	} = $props();
 
 	async function like() {
 		const res = await fetch(`/api/like?post=${post.id}`);
@@ -30,6 +46,26 @@
 			>Comments: {post.commentCount}</a
 		>
 	</div>
+
+	{#if formThing}
+		{const { form, errors, enhance, submitting } = superForm(formThing)}
+
+		<br />
+
+		<form action={`/post${post.id}?/comment`} class="flex" method="post" use:enhance>
+			<input
+				type="text"
+				placeholder="Comment"
+				class="w-2/3 rounded-l-xl border-2 border-white p-1"
+				required
+			/>
+			<button
+				type="submit"
+				class="w-1/3 cursor-pointer rounded-r-xl border-2 border-white p-1 duration-300 hover:bg-gray-600"
+				>Comment</button
+			>
+		</form>
+	{/if}
 
 	{#if showComments}
 		<br />

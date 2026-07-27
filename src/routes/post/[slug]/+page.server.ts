@@ -1,10 +1,15 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { db } from '$lib/db';
+import { superValidate } from 'sveltekit-superforms';
+import { zod4 } from 'sveltekit-superforms/adapters';
+import { commentSchema } from '$lib/types/commentSchema';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const id = Number(params.slug);
 	if (isNaN(id)) return error(400, 'ID is NaN');
+
+	const form = await superValidate(zod4(commentSchema));
 
 	const post = await db.post.findUnique({
 		where: {
@@ -45,5 +50,5 @@ export const load: PageServerLoad = async ({ params }) => {
 		comments.push({ author: authorDB.username, content: comment.content });
 	}
 
-	return { post, author, likes: likes.length, comments };
+	return { post, author, likes: likes.length, comments, form };
 };
