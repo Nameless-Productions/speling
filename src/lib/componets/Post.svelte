@@ -20,6 +20,8 @@
 		>;
 	} = $props();
 
+	const { form, errors, enhance, submitting } = superForm(formThing!);
+
 	async function like() {
 		const res = await fetch(`/api/like?post=${post.id}`);
 		if (!res.ok) return;
@@ -48,8 +50,6 @@
 	</div>
 
 	{#if formThing}
-		{const { form, errors, enhance, submitting } = superForm(formThing)}
-
 		<br />
 
 		<form action={`/post${post.id}?/comment`} class="flex" method="post" use:enhance>
@@ -57,14 +57,18 @@
 				type="text"
 				placeholder="Comment"
 				class="w-2/3 rounded-l-xl border-2 border-white p-1"
+				bind:value={$form.content}
 				required
 			/>
 			<button
 				type="submit"
 				class="w-1/3 cursor-pointer rounded-r-xl border-2 border-white p-1 duration-300 hover:bg-gray-600"
-				>Comment</button
+				disabled={$submitting}>Comment</button
 			>
 		</form>
+		{#if $errors.content}
+			<p class="text-red-500">{$errors.content}</p>
+		{/if}
 	{/if}
 
 	{#if showComments}
