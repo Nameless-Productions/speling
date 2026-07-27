@@ -2,7 +2,7 @@
 	import { resolve } from '$app/paths';
 	import type { Post } from '$lib/types/post';
 
-	let { post }: { post: Post } = $props();
+	let { post, showComments }: { post: Post; showComments: boolean } = $props();
 
 	async function like() {
 		const res = await fetch(`/api/like?post=${post.id}`);
@@ -30,4 +30,13 @@
 			>Comments: {post.commentCount}</a
 		>
 	</div>
+
+	{#if showComments}
+		<br />
+		<p class="mb-3 text-center text-lg font-bold">Comments:</p>
+		{#each post.comments as comment (comment.author)}
+			<p class="font-bold">{comment.author}</p>
+			<p>{comment.content}</p>
+		{/each}
+	{/if}
 </div>
