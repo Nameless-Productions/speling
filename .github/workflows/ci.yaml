@@ -17,6 +17,7 @@ jobs:
 
       - run: |
           pnpm install --frozen-lockfile
+          pnpm svelte-kit sync
           npx prisma migrate deploy
           npx prisma generate
           pnpm lint
