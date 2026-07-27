@@ -81,7 +81,7 @@
 		<p class="mb-3 text-center text-lg font-bold">Comments:</p>
 		{#each post.comments as comment (comment.author)}
 			<p class="font-bold">{comment.author}</p>
-			<p>{comment.content}</p>
+			<p style="white-space: pre-line;">{comment.content}</p>
 		{/each}
 	{/if}
 </div>
