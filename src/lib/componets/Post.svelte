@@ -52,11 +52,12 @@
 	{#if formThing}
 		<br />
 
-		<form action={`/post${post.id}?/comment`} class="flex" method="post" use:enhance>
+		<form action={`/post/${post.id}?/comment`} class="flex" method="post" use:enhance>
 			<input
 				type="text"
 				placeholder="Comment"
 				class="w-2/3 rounded-l-xl border-2 border-white p-1"
+				name="content"
 				bind:value={$form.content}
 				required
 			/>
