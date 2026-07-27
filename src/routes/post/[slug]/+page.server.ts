@@ -42,7 +42,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	for (const comment of commentsDB) {
 		const authorDB = await db.user.findUnique({
 			where: {
-				id: comment.id
+				id: comment.authorID
 			}
 		});
 		if (!authorDB) continue;
