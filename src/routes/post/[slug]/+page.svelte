@@ -11,7 +11,8 @@
 		date: data.post.createdAt,
 		comments: data.comments,
 		typos: data.post.typoCount,
-		id: data.post.id
+		id: data.post.id,
+		commentCount: data.comments.length
 	};
 </script>
 
