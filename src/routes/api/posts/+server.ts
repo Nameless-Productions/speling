@@ -38,7 +38,7 @@ export const GET: RequestHandler = async ({ url }) => {
 			}
 		});
 
-		const comments: { author: string; content: string }[] = [];
+		const comments: { author: string; content: string; id: number }[] = [];
 
 		for (const comment of commentsDB) {
 			const author = await db.user.findUnique({
@@ -48,7 +48,7 @@ export const GET: RequestHandler = async ({ url }) => {
 			});
 			if (!author) continue;
 
-			comments.push({ author: author.username, content: comment.content });
+			comments.push({ author: author.username, content: comment.content, id: comment.id });
 		}
 
 		posts.push({

@@ -3,7 +3,7 @@ export interface Post {
 	content: string;
 	likes: number;
 	date: Date;
-	comments: { author: string; content: string }[];
+	comments: { author: string; content: string; id: number }[];
 	typos: number;
 	id: number;
 	commentCount: number;
