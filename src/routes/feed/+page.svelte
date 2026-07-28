@@ -6,6 +6,7 @@
 	let posts = $state<PostType[]>([]);
 	let typosFirst = $state<'false' | 'true'>('true');
 	let page = $state(0);
+	let isLoading = $state(true);
 
 	onMount(async () => {
 		const res = await fetch(`/api/posts?typosFirst=${typosFirst}&page=${page}`);
@@ -13,6 +14,7 @@
 
 		const resJson = (await res.json()) as PostType[];
 
+		isLoading = false;
 		posts = resJson;
 	});
 
@@ -40,6 +42,11 @@
 			<option value="true">Typos First</option>
 		</select>
 	</div>
+
+	{#if isLoading}
+		<br />
+		<p>Loading posts...</p>
+	{/if}
 
 	{#each posts as post (post.date)}
 		<div class="mx-auto w-full max-w-sm border-t border-b border-t-white border-b-white p-2">
