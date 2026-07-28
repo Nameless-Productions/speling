@@ -79,7 +79,7 @@
 	{#if showComments}
 		<br />
 		<p class="mb-3 text-center text-lg font-bold">Comments:</p>
-		{#each post.comments as comment (comment.author)}
+		{#each post.comments as comment (comment.id)}
 			<p class="font-bold">{comment.author}</p>
 			<p style="white-space: pre-line;">{comment.content}</p>
 		{/each}
