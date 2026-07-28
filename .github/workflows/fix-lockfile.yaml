@@ -1,0 +1,46 @@
+name: Fix lockfile
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to fix'
+        required: true
+        type: string
+
+jobs:
+  fix-lockfile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Delete and regenerate lockfile
+        run: |
+          rm pnpm-lock.yaml
+          pnpm i
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pnpm-lock.yaml
+          if git diff --staged --quiet; then
+            echo "No changes to lockfile"
+          else
+            git commit -m "chore: regenerate pnpm-lock.yaml"
+            git push origin HEAD:${{ inputs.branch }}
+          fi
