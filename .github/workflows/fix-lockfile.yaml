@@ -28,7 +28,6 @@ jobs:
           node-version: 22
           cache: 'pnpm'
 
-
       - name: Delete and regenerate lockfile
         run: |
           rm pnpm-lock.yaml
