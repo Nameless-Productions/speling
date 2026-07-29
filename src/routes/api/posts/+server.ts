@@ -59,7 +59,8 @@ export const GET: RequestHandler = async ({ url }) => {
 			comments,
 			typos: post.typoCount,
 			id: post.id,
-			commentCount: comments.length
+			commentCount: comments.length,
+			imageUrl: post.imageUrl ? post.imageUrl : undefined
 		});
 	}
 
