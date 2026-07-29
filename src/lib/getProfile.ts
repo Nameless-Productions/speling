@@ -39,7 +39,8 @@ export async function getProfile(id: number) {
 			comments: [],
 			typos: post.typoCount,
 			id: post.id,
-			commentCount: comments.length
+			commentCount: comments.length,
+			imageUrl: post.imageUrl ? post.imageUrl : undefined
 		});
 	}
 
