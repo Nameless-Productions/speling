@@ -38,6 +38,15 @@
 	<p class="font-bold">{post.author}</p>
 	<p>{post.content}</p>
 
+	{#if post.imageUrl}
+		<img
+			src={post.imageUrl}
+			alt="uploaded img"
+			class="max-h-96 w-full rounded-xl object-cover"
+			loading="lazy"
+		/>
+	{/if}
+
 	<div class="flex">
 		<p class="my-2 w-1/3 rounded-l-full bg-blue-600 p-0.5 text-center">Typos: {post.typos}</p>
 		<button
