@@ -2,9 +2,11 @@ import { zod4 } from 'sveltekit-superforms/adapters';
 import type { Actions, PageServerLoad } from './$types';
 import { fail, superValidate } from 'sveltekit-superforms';
 import { postSchema } from '$lib/types/postSchema';
-import { redirect } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 import Typo from 'typo-js';
 import { db } from '$lib/db';
+import { uploadFile } from '$lib/uploadFIle';
+import { randomUUID } from 'crypto';
 
 export const load: PageServerLoad = async () => {
 	const form = await superValidate(zod4(postSchema));
@@ -34,12 +36,27 @@ export const actions: Actions = {
 			}
 		}
 
+		let imageURL: string | null = null;
+
+		if (form.data.image && form.data.image.size > 0) {
+			const ok = await uploadFile(
+				locals.User.id,
+				randomUUID(),
+				form.data.image.type,
+				form.data.image.stream()
+			);
+
+			if (!ok) return fail(500, { form, error: 'Error while uploading file' });
+			imageURL = ok;
+		}
+
 		const post = await db.post.create({
 			data: {
 				authorID: locals.User.id,
 				typoCount: typos,
 				content: form.data.content,
-				createdAt: new Date()
+				createdAt: new Date(),
+				imageUrl: imageURL
 			}
 		});
 

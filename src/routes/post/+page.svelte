@@ -8,7 +8,7 @@
 
 <div class="flex h-screen items-center justify-center">
 	<div class="rounded-xl border-2 border-white p-5">
-		<form action="?/post" method="post" use:enhance>
+		<form action="?/post" method="post" enctype="multipart/form-data" use:enhance>
 			<textarea
 				name="content"
 				placeholder="What's on your mind?"
@@ -18,6 +18,17 @@
 			{#if $errors.content}
 				<p class="text-red-500">{$errors.content}</p>
 			{/if}
+			<br />
+			<input
+				type="file"
+				name="image"
+				accept="image/*"
+				class="mt-3 w-full rounded-xl border border-gray-500 p-1"
+				onchange={(e) => {
+					const target = e.currentTarget;
+					$form.image = target.files?.[0] as File;
+				}}
+			/>
 
 			<br />
 
