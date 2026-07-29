@@ -2,12 +2,11 @@ import { zod4 } from 'sveltekit-superforms/adapters';
 import type { Actions, PageServerLoad } from './$types';
 import { fail, superValidate } from 'sveltekit-superforms';
 import { postSchema } from '$lib/types/postSchema';
-import { error, redirect } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 import Typo from 'typo-js';
 import { db } from '$lib/db';
 import { uploadFile } from '$lib/uploadFIle';
 import { randomUUID } from 'crypto';
-import { file } from 'zod';
 
 export const load: PageServerLoad = async () => {
 	const form = await superValidate(zod4(postSchema));
