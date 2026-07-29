@@ -7,4 +7,5 @@ export interface Post {
 	typos: number;
 	id: number;
 	commentCount: number;
+	imageUrl?: string;
 }
