@@ -7,6 +7,7 @@ import Typo from 'typo-js';
 import { db } from '$lib/db';
 import { uploadFile } from '$lib/uploadFIle';
 import { randomUUID } from 'crypto';
+import { file } from 'zod';
 
 export const load: PageServerLoad = async () => {
 	const form = await superValidate(zod4(postSchema));
@@ -43,7 +44,8 @@ export const actions: Actions = {
 				locals.User.id,
 				randomUUID(),
 				form.data.image.type,
-				form.data.image.stream()
+				form.data.image.stream(),
+				form.data.image.size
 			);
 
 			if (!ok) return fail(500, { form, error: 'Error while uploading file' });
