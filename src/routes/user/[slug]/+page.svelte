@@ -5,7 +5,9 @@
 </script>
 
 <div class="flex flex-col items-center">
-	<p class="text-xl font-bold">{data.user.user.username}</p>
+	<p class="text-xl font-bold flex">{data.user.user.username} {#if data.thisUser}
+		- You
+	{/if}</p>
 
 	<p class="mb-5 rounded-full bg-blue-600 p-1">Typos: {data.user.user.typoCount}</p>
 
