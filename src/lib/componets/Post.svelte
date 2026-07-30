@@ -37,7 +37,7 @@
 </script>
 
 <div>
-	<p class="font-bold">{post.author}</p>
+	<a href={resolve(`/user/${post.author.id}`)} class="font-bold">{post.author.username}</a>
 	<p>{post.content}</p>
 
 	{#if post.imageUrl}

@@ -32,7 +32,10 @@ export async function getProfile(id: number) {
 		});
 
 		posts.push({
-			author: user.username,
+			author: {
+				username: user.username,
+				id: user.id
+			},
 			content: post.content,
 			likes: likes.length,
 			date: post.createdAt,
