@@ -1,7 +1,7 @@
 export interface Post {
 	author: {
-		username: string,
-		id: number
+		username: string;
+		id: number;
 	};
 	content: string;
 	likes: number;
