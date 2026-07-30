@@ -1,6 +1,6 @@
 import { Upload } from '@aws-sdk/lib-storage';
 import { s3 } from './client';
-import { CF_BUCKET } from '$env/static/private';
+import { CF_BUCKET, CDN_URL } from '$env/static/private';
 
 export async function uploadFile(
 	uid: number,
@@ -31,7 +31,7 @@ export async function uploadFile(
 
 	try {
 		await upload.done();
-		return `https://cdn.thenamelessdev.com/${key}`;
+		return `${CDN_URL}/${key}`;
 	} catch {
 		await upload.abort().catch(() => {});
 		return false;
