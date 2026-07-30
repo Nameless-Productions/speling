@@ -23,7 +23,7 @@
 				type="file"
 				name="image"
 				accept="image/*"
-				class="mt-3 w-full rounded-xl border border-gray-500 p-1"
+				class="mt-3 w-full cursor-pointer rounded-xl border border-gray-500 p-1"
 				onchange={(e) => {
 					const target = e.currentTarget;
 					$form.image = target.files?.[0] as File;
