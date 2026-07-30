@@ -12,7 +12,8 @@
 		comments: data.comments,
 		typos: data.post.typoCount,
 		id: data.post.id,
-		commentCount: data.comments.length
+		commentCount: data.comments.length,
+		imageUrl: data.post.imageUrl ? data.post.imageUrl : undefined
 	};
 </script>
 

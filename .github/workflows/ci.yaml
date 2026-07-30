@@ -30,3 +30,8 @@ jobs:
           DISCORD_SECRET: meow
           DISCORD_URL: meow
           DISCORD_REDIRECT: meow
+          CF_ACCESS_KEY: test
+          CF_SECRET_KEY: test
+          CF_URL: test
+          CF_BUCKET: test
+          CDN_URL: test

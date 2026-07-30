@@ -25,6 +25,7 @@ model Post {
   typoCount Int
   content String
   createdAt DateTime
+  imageUrl String?
 }
 
 model Like {
