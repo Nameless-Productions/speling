@@ -1,5 +1,6 @@
 import { Upload } from '@aws-sdk/lib-storage';
 import { s3 } from './client';
+import { CF_BUCKET } from '$env/static/private';
 
 export async function uploadFile(
 	uid: number,
@@ -19,7 +20,7 @@ export async function uploadFile(
 	const upload = new Upload({
 		client: s3,
 		params: {
-			Bucket: 'speling',
+			Bucket: CF_BUCKET,
 			Key: key,
 			Body: body,
 			ContentType: contentType
