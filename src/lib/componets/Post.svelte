@@ -20,7 +20,7 @@
 		>;
 	} = $props();
 
-	post.comments = post.comments.reverse()
+	post.comments = post.comments.reverse();
 
 	const sf = formThing ? superForm(formThing) : undefined;
 	const form = sf?.form;
