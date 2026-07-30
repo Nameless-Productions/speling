@@ -52,7 +52,10 @@ export const GET: RequestHandler = async ({ url }) => {
 		}
 
 		posts.push({
-			author: user.username,
+			author: {
+				username: user.username,
+				id: user.id
+			},
 			content: post.content,
 			likes: likes.length,
 			date: post.createdAt,

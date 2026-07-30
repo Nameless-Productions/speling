@@ -5,7 +5,10 @@
 	let { data } = $props();
 
 	const post: PostType = {
-		author: data.author.username,
+		author: {
+			username: data.author.username,
+			id: data.author.id
+		},
 		content: data.post.content,
 		likes: data.likes,
 		date: data.post.createdAt,

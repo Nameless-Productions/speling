@@ -37,7 +37,7 @@
 </script>
 
 <div>
-	<p class="font-bold">{post.author}</p>
+	<p class="font-bold">{post.author.username}</p>
 	<p>{post.content}</p>
 
 	{#if post.imageUrl}
