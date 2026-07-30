@@ -12,8 +12,12 @@
 	{/if}</p>
 
 	<div class="flex">
+	{#if data.thisUser}
 		<p class="mb-5 rounded-l-full bg-blue-600 p-1">Typos: {data.user.user.typoCount}</p>
 		<button type="button" class="mb-5 rounded-r-full bg-red-600 hover:bg-red-400 duration-300 p-1 cursor-pointer" onclick={() => isDeleteOpen = !isDeleteOpen}>Delete account</button>
+		{:else}
+		<p class="mb-5 rounded-full bg-blue-600 p-1">Typos: {data.user.user.typoCount}</p>
+	{/if}
 	</div>
 
 	<p class="mb-3 font-bold">Posts:</p>
