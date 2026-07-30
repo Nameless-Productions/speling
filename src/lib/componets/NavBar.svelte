@@ -18,7 +18,8 @@
 			>Log in</a
 		>
 	{:else}
-		<a href={resolve('/feed')} class={btnClass}>Scroll</a>
 		<a href={resolve('/post')} class={btnClass}>Post</a>
+		<a href={resolve('/me')} class={btnClass}>Profile</a>
 	{/if}
+	<a href={resolve('/feed')} class={btnClass}>Scroll</a>
 </nav>
