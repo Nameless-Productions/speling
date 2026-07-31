@@ -8,5 +8,5 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 	const user = await getProfile(uid);
 	if (!user) return error(404, 'User not found');
 
-	return { user, thisUser: locals.User?.id === user.user.id };
+	return { profile: user, thisUser: locals.User?.id === user.user.id };
 };

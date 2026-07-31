@@ -8,27 +8,27 @@
 
 <div class="flex flex-col items-center">
 	<p class="flex text-xl font-bold">
-		{data.user.user.username}
+		{data.profile.user.username}
 		{#if data.thisUser}
 			- You
 		{/if}
 	</p>
 
 	<div class="flex">
-		{#if data.thisUser || data.user.user.isAdmin}
-			<p class="mb-5 rounded-l-full bg-blue-600 p-1">Typos: {data.user.user.typoCount}</p>
+		{#if data.thisUser || data.user?.isAdmin}
+			<p class="mb-5 rounded-l-full bg-blue-600 p-1">Typos: {data.profile.user.typoCount}</p>
 			<button
 				type="button"
 				class="mb-5 cursor-pointer rounded-r-full bg-red-600 p-1 duration-300 hover:bg-red-400"
 				onclick={() => (isDeleteOpen = !isDeleteOpen)}>Delete account</button
 			>
 		{:else}
-			<p class="mb-5 rounded-full bg-blue-600 p-1">Typos: {data.user.user.typoCount}</p>
+			<p class="mb-5 rounded-full bg-blue-600 p-1">Typos: {data.profile.user.typoCount}</p>
 		{/if}
 	</div>
 
 	<p class="mb-3 font-bold">Posts:</p>
-	{#each data.user.posts as post (post.date)}
+	{#each data.profile.posts as post (post.date)}
 		<div class="mx-auto w-full max-w-sm border-t border-b border-t-white border-b-white p-2">
 			<Post {post} showComments={false} isOwned={data.thisUser} />
 		</div>
@@ -36,5 +36,5 @@
 </div>
 
 {#if isDeleteOpen}
-	<DeleteUserPopup userID={data.user.user.id} />
+	<DeleteUserPopup userID={data.profile.user.id} />
 {/if}
