@@ -63,7 +63,7 @@ export const GET: RequestHandler = async ({ cookies, locals, url }) => {
 		data: {
 			isAdmin: ADMIN === username
 		}
-	})
+	});
 
 	const jwtToken = await createToken(userDB.id);
 

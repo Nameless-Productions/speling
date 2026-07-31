@@ -21,7 +21,7 @@
 			}
 		>;
 		isOwned?: boolean;
-		isAdmin?: boolean
+		isAdmin?: boolean;
 	} = $props();
 
 	post.comments = post.comments.reverse();
