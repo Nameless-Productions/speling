@@ -7,17 +7,24 @@
 </script>
 
 <div class="flex flex-col items-center">
-	<p class="text-xl font-bold flex">{data.user.user.username} {#if data.thisUser}
-		- You
-	{/if}</p>
+	<p class="flex text-xl font-bold">
+		{data.user.user.username}
+		{#if data.thisUser}
+			- You
+		{/if}
+	</p>
 
 	<div class="flex">
-	{#if data.thisUser}
-		<p class="mb-5 rounded-l-full bg-blue-600 p-1">Typos: {data.user.user.typoCount}</p>
-		<button type="button" class="mb-5 rounded-r-full bg-red-600 hover:bg-red-400 duration-300 p-1 cursor-pointer" onclick={() => isDeleteOpen = !isDeleteOpen}>Delete account</button>
+		{#if data.thisUser}
+			<p class="mb-5 rounded-l-full bg-blue-600 p-1">Typos: {data.user.user.typoCount}</p>
+			<button
+				type="button"
+				class="mb-5 cursor-pointer rounded-r-full bg-red-600 p-1 duration-300 hover:bg-red-400"
+				onclick={() => (isDeleteOpen = !isDeleteOpen)}>Delete account</button
+			>
 		{:else}
-		<p class="mb-5 rounded-full bg-blue-600 p-1">Typos: {data.user.user.typoCount}</p>
-	{/if}
+			<p class="mb-5 rounded-full bg-blue-600 p-1">Typos: {data.user.user.typoCount}</p>
+		{/if}
 	</div>
 
 	<p class="mb-3 font-bold">Posts:</p>
