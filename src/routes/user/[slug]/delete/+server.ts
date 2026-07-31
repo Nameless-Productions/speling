@@ -6,7 +6,7 @@ import { deleteUserFolder } from '$lib/deleteUserFolder';
 export const GET: RequestHandler = async ({ url, params, locals, cookies }) => {
 	const userID = Number(params.slug);
 	if (!locals.User) return redirect(303, new URL('/login', url));
-	if (locals.User.id !== userID)
+	if (locals.User.id !== userID && !locals.User.isAdmin)
 		return error(403, 'You must either be this user or a staff member');
 
 	const userDB = await db.user.findUnique({
@@ -45,4 +45,6 @@ export const GET: RequestHandler = async ({ url, params, locals, cookies }) => {
 	await deleteUserFolder(userDB.id);
 
 	return redirect(303, new URL('/login', url));
+
+	// when deleting a user as an admin it still logs you out to prevent abuse and not because i was lazy
 };

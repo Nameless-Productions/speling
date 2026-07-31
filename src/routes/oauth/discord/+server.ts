@@ -1,6 +1,6 @@
 import { error, redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { DISCORD_CLIENT, DISCORD_REDIRECT, DISCORD_SECRET } from '$env/static/private';
+import { ADMIN, DISCORD_CLIENT, DISCORD_REDIRECT, DISCORD_SECRET } from '$env/static/private';
 import { db } from '$lib/db';
 import { createToken } from '$lib/jwt';
 
@@ -58,6 +58,13 @@ export const GET: RequestHandler = async ({ cookies, locals, url }) => {
 		});
 	}
 
+	await db.user.update({
+		where: userDB,
+		data: {
+			isAdmin: ADMIN === username
+		}
+	});
+
 	const jwtToken = await createToken(userDB.id);
 
 	cookies.set('token', jwtToken, {
@@ -67,7 +74,7 @@ export const GET: RequestHandler = async ({ cookies, locals, url }) => {
 		sameSite: 'lax'
 	});
 
-	locals.User = { username: userDB.username, id: userDB.id };
+	locals.User = { username: userDB.username, id: userDB.id, isAdmin: userDB.isAdmin };
 
 	return redirect(303, new URL('/', url));
 };

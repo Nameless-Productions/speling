@@ -7,6 +7,7 @@ declare global {
 			User?: {
 				id: number;
 				username: string;
+				isAdmin: boolean;
 			};
 		}
 		// interface PageData {}

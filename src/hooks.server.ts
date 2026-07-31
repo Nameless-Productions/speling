@@ -23,7 +23,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 				}
 			});
 			if (userDB) {
-				event.locals.User = { username: userDB.username, id: userID };
+				event.locals.User = { username: userDB.username, id: userID, isAdmin: userDB.isAdmin };
 			}
 		}
 	}

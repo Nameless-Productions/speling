@@ -17,6 +17,7 @@ model User {
   id Int @id @default(autoincrement())
   username String @unique
   typoCount Int @default(0) // the total typo count
+  isAdmin Boolean @default(false)
 }
 
 model Post {
