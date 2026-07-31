@@ -7,7 +7,8 @@
 		post,
 		showComments,
 		formThing,
-		isOwned = false
+		isOwned = false,
+		isAdmin = false
 	}: {
 		post: Post;
 		showComments: boolean;
@@ -20,6 +21,7 @@
 			}
 		>;
 		isOwned?: boolean;
+		isAdmin?: boolean
 	} = $props();
 
 	post.comments = post.comments.reverse();
@@ -66,7 +68,7 @@
 		>
 	</div>
 
-	{#if isOwned}
+	{#if isOwned || isAdmin}
 		<div class="-mt-2 text-center">
 			<a
 				href={resolve(`/post/${post.id}/delete`)}

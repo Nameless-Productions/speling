@@ -15,7 +15,7 @@
 	</p>
 
 	<div class="flex">
-		{#if data.thisUser}
+		{#if data.thisUser || data.user.user.isAdmin}
 			<p class="mb-5 rounded-l-full bg-blue-600 p-1">Typos: {data.user.user.typoCount}</p>
 			<button
 				type="button"
