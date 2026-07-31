@@ -45,4 +45,6 @@ export const GET: RequestHandler = async ({ url, params, locals, cookies }) => {
 	await deleteUserFolder(userDB.id);
 
 	return redirect(303, new URL('/login', url));
+
+	// when deleting a user as an admin it still logs you out to prevent abuse and not because i was lazy
 };
