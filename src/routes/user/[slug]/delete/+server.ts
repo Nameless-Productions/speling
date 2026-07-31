@@ -1,6 +1,7 @@
 import { error, redirect } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
 import { db } from "$lib/db";
+import { deleteUserFolder } from "$lib/deleteUserFolder";
 
 export const GET: RequestHandler = async ({url, params, locals, cookies}) => {
     const userID = Number(params.slug);
@@ -39,6 +40,9 @@ export const GET: RequestHandler = async ({url, params, locals, cookies}) => {
     cookies.delete("token", {
         path: "/"
     })
+
+    await deleteUserFolder(userDB.id);
+
 
     return redirect(303, new URL("/login", url))
 }
