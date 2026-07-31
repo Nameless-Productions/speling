@@ -13,7 +13,7 @@ export const GET: RequestHandler = async ({ params, url, locals }) => {
 	if (!post) return redirect(303, new URL('/login', url));
 	if (!locals.User) return redirect(303, new URL('/login', url));
 
-	if (post.authorID !== locals.User.id || !locals.User.isAdmin)
+	if (post.authorID !== locals.User.id && !locals.User.isAdmin)
 		return error(403, 'Only the author and admins can delete this');
 
 	await db.like.deleteMany({
