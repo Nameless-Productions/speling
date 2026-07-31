@@ -22,6 +22,6 @@
 
 <div class="flex h-screen items-center justify-center">
 	<div class="w-full max-w-md rounded-xl border-2 border-gray-600 p-3">
-		<Post {post} showComments formThing={data.form} />
+		<Post {post} showComments formThing={data.form} isOwned={data.user?.id === data.post.authorID} />
 	</div>
 </div>
