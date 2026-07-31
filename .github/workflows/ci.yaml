@@ -35,3 +35,4 @@ jobs:
           CF_URL: test
           CF_BUCKET: test
           CDN_URL: test
+          ADMIN: test
