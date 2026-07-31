@@ -6,7 +6,8 @@
 	let {
 		post,
 		showComments,
-		formThing
+		formThing,
+		isOwned = false
 	}: {
 		post: Post;
 		showComments: boolean;
@@ -18,6 +19,7 @@
 				content: string;
 			}
 		>;
+		isOwned?: boolean;
 	} = $props();
 
 	post.comments = post.comments.reverse();
@@ -63,6 +65,15 @@
 			>Comments: {post.commentCount}</a
 		>
 	</div>
+
+	{#if isOwned}
+		<div class="-mt-2 text-center">
+			<a
+				href={resolve(`/post/${post.id}/delete`)}
+				class="rounded-b-xl bg-red-600 p-1 text-center duration-300 hover:bg-red-500">Delete post</a
+			>
+		</div>
+	{/if}
 
 	{#if formThing && sf && enhance}
 		<br />
