@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
 	import NavBar from '../lib/componets/NavBar.svelte';
 	import './layout.css';
 
@@ -14,14 +13,14 @@
 	{@render children()}
 	<div class="text-center">
 		<p>
-			By using our platform you agree to our <a
-				href={resolve('/legal/privacy.pdf')}
-				target="_blank"
-				class="text-blue-500 underline">Privacy Policy</a
+			By using our platform you agree to our <button
+				type="button"
+				onclick={() => location.href = "/legal/privacy.pdf"}
+				class="text-blue-500 cursor-pointer underline">Privacy Policy</button
 			>
 			and
-			<a href={resolve('/legal/tos.pdf')} target="_blank" class="text-blue-500 underline"
-				>Terms of Service</a
+			<button type="button" onclick={() => location.href = "/legal/tos.pdf"} class="text-blue-500 cursor-pointer underline"
+				>Terms of Service</button
 			>
 		</p>
 	</div>
