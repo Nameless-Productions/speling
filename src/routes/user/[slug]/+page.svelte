@@ -18,7 +18,9 @@
 	<div class="flex">
 		{#if data.thisUser || data.user?.isAdmin}
 			<p class="mb-5 rounded-l-full bg-blue-600 p-1">Typos: {data.profile.user.typoCount}</p>
-			<a href={resolve("/logout")} class="mb-5 bg-gray-600 hover:bg-gray-500 duration-300 p-1">Log out</a>
+			<a href={resolve('/logout')} class="mb-5 bg-gray-600 p-1 duration-300 hover:bg-gray-500"
+				>Log out</a
+			>
 			<button
 				type="button"
 				class="mb-5 cursor-pointer rounded-r-full bg-red-600 p-1 duration-300 hover:bg-red-400"
