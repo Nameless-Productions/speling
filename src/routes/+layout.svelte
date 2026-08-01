@@ -15,12 +15,14 @@
 		<p>
 			By using our platform you agree to our <button
 				type="button"
-				onclick={() => location.href = "/legal/privacy.pdf"}
-				class="text-blue-500 cursor-pointer underline">Privacy Policy</button
+				onclick={() => (location.href = '/legal/privacy.pdf')}
+				class="cursor-pointer text-blue-500 underline">Privacy Policy</button
 			>
 			and
-			<button type="button" onclick={() => location.href = "/legal/tos.pdf"} class="text-blue-500 cursor-pointer underline"
-				>Terms of Service</button
+			<button
+				type="button"
+				onclick={() => (location.href = '/legal/tos.pdf')}
+				class="cursor-pointer text-blue-500 underline">Terms of Service</button
 			>
 		</p>
 	</div>
