@@ -39,3 +39,16 @@ jobs:
           ADMIN: test
 
       - run: pnpm build
+        env:
+          DATABASE_URL: file:./database.db
+          SECRET: meowmeowmeow
+          DISCORD_CLIENT: meow
+          DISCORD_SECRET: meow
+          DISCORD_URL: meow
+          DISCORD_REDIRECT: meow
+          CF_ACCESS_KEY: test
+          CF_SECRET_KEY: test
+          CF_URL: test
+          CF_BUCKET: test
+          CDN_URL: test
+          ADMIN: test
