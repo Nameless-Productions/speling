@@ -21,6 +21,9 @@
 			<a href={resolve('/logout')} class="mb-5 bg-gray-600 p-1 duration-300 hover:bg-gray-500"
 				>Log out</a
 			>
+			<a href={resolve('/api/userData')} class="mb-5 bg-zinc-600 p-1 duration-300 hover:bg-zinc-500"
+				>Download User Data</a
+			>
 			<button
 				type="button"
 				class="mb-5 cursor-pointer rounded-r-full bg-red-600 p-1 duration-300 hover:bg-red-400"
