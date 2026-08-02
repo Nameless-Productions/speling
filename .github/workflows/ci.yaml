@@ -24,8 +24,6 @@ jobs:
       - run: pnpm lint
 
       - run: pnpm check
-
-      - run: pnpm build
         env:
           DATABASE_URL: file:./database.db
           SECRET: meowmeowmeow
@@ -39,3 +37,5 @@ jobs:
           CF_BUCKET: test
           CDN_URL: test
           ADMIN: test
+
+      - run: pnpm build
