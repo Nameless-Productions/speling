@@ -53,5 +53,5 @@ export async function getUserData(userID: number) {
 
 	archive.finalize();
 
-	return Readable.toWeb(archive);
+	return Readable.toWeb(archive) as ReadableStream;
 }
