@@ -15,14 +15,30 @@ jobs:
         with:
           version: 10.33.0
 
-      - run: |
-          pnpm install --frozen-lockfile
-          pnpm svelte-kit sync
-          npx prisma migrate deploy
-          npx prisma generate
-          pnpm lint
-          pnpm check
-          pnpm build
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm svelte-kit sync
+      - run: npx prisma migrate deploy & npx prisma generate
+        env:
+          DATABASE_URL: file:./database.db
+
+      - run: pnpm lint
+
+      - run: pnpm check
+        env:
+          DATABASE_URL: file:./database.db
+          SECRET: meowmeowmeow
+          DISCORD_CLIENT: meow
+          DISCORD_SECRET: meow
+          DISCORD_URL: meow
+          DISCORD_REDIRECT: meow
+          CF_ACCESS_KEY: test
+          CF_SECRET_KEY: test
+          CF_URL: test
+          CF_BUCKET: test
+          CDN_URL: test
+          ADMIN: test
+
+      - run: pnpm build
         env:
           DATABASE_URL: file:./database.db
           SECRET: meowmeowmeow
