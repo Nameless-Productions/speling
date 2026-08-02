@@ -22,4 +22,5 @@
 		<a href={resolve('/me')} class={btnClass}>Profile</a>
 	{/if}
 	<a href={resolve('/feed')} class={btnClass}>Scroll</a>
+	<a href={resolve('/support')} class={btnClass}>Support</a>
 </nav>

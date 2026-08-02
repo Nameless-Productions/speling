@@ -10,6 +10,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		pathname.startsWith('/login') ||
 		pathname.startsWith('/oauth/') ||
 		pathname.startsWith('/api/posts') ||
+		pathname.startsWith('/support') ||
 		pathname === '/';
 
 	const token = event.cookies.get('token');
