@@ -33,6 +33,7 @@ Thanks for your interest in contributing! This document outlines how to get set 
 ## Reporting Bugs
 
 When filing a bug report, please include:
+
 - Steps to reproduce
 - Expected vs. actual behavior
 - Environment details (Browser)
@@ -41,6 +42,7 @@ When filing a bug report, please include:
 ## Suggesting Features
 
 Open an issue describing:
+
 - The problem you're trying to solve
 - Your proposed solution
 - Any alternatives you've considered
