@@ -1,30 +1,21 @@
 <script lang="ts">
 	import Post from '$lib/componets/Post.svelte';
 	import type { Post as PostType } from '$lib/types/post';
-	import { onMount } from 'svelte';
 
 	let posts = $state<PostType[]>([]);
 	let typosFirst = $state<'false' | 'true'>('true');
 	let page = $state(0);
 	let isLoading = $state(true);
 
-	onMount(async () => {
-		const res = await fetch(`/api/posts?typosFirst=${typosFirst}&page=${page}`);
-		if (!res.ok) return;
-
-		const resJson = (await res.json()) as PostType[];
-
-		isLoading = false;
-		posts = resJson;
-	});
-
 	$effect(() => {
 		(async () => {
+			isLoading = true;
 			const res = await fetch(`/api/posts?typosFirst=${typosFirst}&page=${page}`);
 			if (!res.ok) return;
 
 			const resJson = (await res.json()) as PostType[];
 
+			isLoading = false;
 			posts = resJson;
 		})();
 	});
