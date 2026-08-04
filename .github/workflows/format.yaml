@@ -30,7 +30,6 @@ jobs:
       - name: Install deps
         run: pnpm i --frozen-lockfile
 
-
       - name: Format code
         run: pnpm format
 
