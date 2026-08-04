@@ -12,7 +12,8 @@ export const GET: RequestHandler = async ({ url }) => {
 	if (isNaN(page)) return error(400, 'Page is NaN');
 
 	const postsDB = await db.post.findMany({
-		take: page === 0 ? pageSize : page * pageSize,
+		skip: pageSize * page,
+		take: pageSize,
 		orderBy: [{ typoCount: typosFirst ? 'desc' : 'asc' }, { createdAt: 'desc' }]
 	});
 

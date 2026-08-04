@@ -1,31 +1,22 @@
 <script lang="ts">
 	import Post from '$lib/componets/Post.svelte';
 	import type { Post as PostType } from '$lib/types/post';
-	import { onMount } from 'svelte';
 
 	let posts = $state<PostType[]>([]);
 	let typosFirst = $state<'false' | 'true'>('true');
 	let page = $state(0);
 	let isLoading = $state(true);
 
-	onMount(async () => {
-		const res = await fetch(`/api/posts?typosFirst=${typosFirst}&page=${page}`);
-		if (!res.ok) return;
-
-		const resJson = (await res.json()) as PostType[];
-
-		isLoading = false;
-		posts = resJson;
-	});
-
 	$effect(() => {
 		(async () => {
+			isLoading = true;
 			const res = await fetch(`/api/posts?typosFirst=${typosFirst}&page=${page}`);
 			if (!res.ok) return;
 
 			const resJson = (await res.json()) as PostType[];
 
-			posts = resJson;
+			isLoading = false;
+			posts = [...posts, ...resJson];
 		})();
 	});
 </script>
@@ -48,7 +39,7 @@
 		<p>Loading posts...</p>
 	{/if}
 
-	{#each posts as post (post.date)}
+	{#each posts as post (post.id)}
 		<div class="mx-auto w-full max-w-sm border-t border-b border-t-white border-b-white p-2">
 			<Post {post} showComments={false} />
 		</div>

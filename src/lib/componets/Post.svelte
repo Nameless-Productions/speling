@@ -36,7 +36,8 @@
 		const res = await fetch(`/api/like?post=${post.id}`);
 		if (!res.ok) return;
 
-		location.reload();
+		const json = await res.json();
+		post.likes = json.likes;
 	}
 </script>
 
@@ -50,6 +51,7 @@
 			alt="uploaded img"
 			class="max-h-96 w-full rounded-xl object-cover"
 			loading="lazy"
+			decoding="async"
 		/>
 	{/if}
 
