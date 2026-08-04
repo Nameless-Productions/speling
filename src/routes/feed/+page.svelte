@@ -16,7 +16,7 @@
 			const resJson = (await res.json()) as PostType[];
 
 			isLoading = false;
-			posts = resJson;
+			posts = [...posts, ...resJson];
 		})();
 	});
 </script>
