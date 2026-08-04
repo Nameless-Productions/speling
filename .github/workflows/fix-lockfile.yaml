@@ -6,11 +6,6 @@ permissions:
 
 on:
   workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Branch to fix'
-        required: true
-        type: string
 
 jobs:
   fix-lockfile:
@@ -18,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ inputs.branch }}
+          ref: ${{ github.ref_name }}
           fetch-depth: 0
 
       - name: Setup pnpm
@@ -46,5 +41,5 @@ jobs:
             echo "No changes to lockfile"
           else
             git commit -m "chore: regenerate pnpm-lock.yaml"
-            git push origin HEAD:${{ inputs.branch }}
+            git push origin HEAD:${{ github.ref_name }}
           fi
