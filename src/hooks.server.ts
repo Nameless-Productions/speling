@@ -1,9 +1,14 @@
 import { db } from '$lib/db';
 import { verifyToken } from '$lib/jwt';
-import { redirect, type Handle } from '@sveltejs/kit';
+import { error, redirect, type Handle } from '@sveltejs/kit';
+import { limiter } from '$lib/rateLimiter';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const pathname = event.url.pathname.replace(/\/{2,}/g, '/').replace(/\/+$/, '') || '/';
+
+	if (await limiter.isLimited(event)) {
+		return error(429, 'Rate limited');
+	}
 
 	const isPublic =
 		pathname.startsWith('/feed') ||
