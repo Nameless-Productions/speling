@@ -38,3 +38,16 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 
 	return json({ follows: follows.length });
 };
+
+export const GET: RequestHandler = async ({ url }) => {
+	const userID = url.searchParams.get('userID');
+	if (!userID) return error(400, 'Missing userID');
+
+	const follows = await db.follow.findMany({
+		where: {
+			userID: Number(userID)
+		}
+	});
+
+	return json({ follows: follows.length });
+};
