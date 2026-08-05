@@ -28,7 +28,7 @@
 	<p>Follows: {follows}</p>
 
 	<div class="flex">
-		{#if data.thisUser || data.user?.isAdmin}
+		{#if data.thisUser}
 			<p class="mb-5 rounded-l-full bg-blue-600 p-1">Typos: {data.profile.user.typoCount}</p>
 			<a href={resolve('/logout')} class="mb-5 bg-gray-600 p-1 duration-300 hover:bg-gray-500"
 				>Log out</a
@@ -36,6 +36,13 @@
 			<a href={resolve('/api/userData')} class="mb-5 bg-zinc-600 p-1 duration-300 hover:bg-zinc-500"
 				>Download User Data</a
 			>
+			<button
+				type="button"
+				class="mb-5 cursor-pointer rounded-r-full bg-red-600 p-1 duration-300 hover:bg-red-400"
+				onclick={() => (isDeleteOpen = !isDeleteOpen)}>Delete account</button
+			>
+		{:else if data.user?.isAdmin}
+			<p class="mb-5 rounded-l-full bg-blue-600 p-1">Typos: {data.profile.user.typoCount}</p>
 			<button
 				type="button"
 				class="mb-5 cursor-pointer rounded-r-full bg-red-600 p-1 duration-300 hover:bg-red-400"
