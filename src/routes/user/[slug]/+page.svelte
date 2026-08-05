@@ -5,6 +5,17 @@
 
 	const { data } = $props();
 	let isDeleteOpen = $state(false);
+	let follows = $state('loading');
+
+	$effect(() => {
+		(async () => {
+			const res = await fetch(`/api/follow?userID=${data.profile.user.id}`);
+			const json = await res.json();
+			if (!res.ok) return console.error(await res.text());
+
+			follows = json.follows;
+		})();
+	});
 </script>
 
 <div class="flex flex-col items-center">
@@ -14,6 +25,7 @@
 			- You
 		{/if}
 	</p>
+	<p>Follows: {follows}</p>
 
 	<div class="flex">
 		{#if data.thisUser || data.user?.isAdmin}
