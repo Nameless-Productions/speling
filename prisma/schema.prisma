@@ -41,3 +41,9 @@ model Comment {
   authorID Int
   content String
 }
+
+model Follow {
+  id Int @id @default(autoincrement())
+  userID Int
+  authorID Int
+}
