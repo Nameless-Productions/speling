@@ -14,7 +14,23 @@ export const GET: RequestHandler = async ({ locals, url }) => {
 			postID
 		}
 	});
-	if (userLikes.length !== 0) return error(400, 'User already likes this post');
+	if (userLikes.length !== 0) {
+		await db.like.deleteMany({
+			where: {
+				postID,
+				userID: locals.User.id
+			}
+		});
+
+		const likes = await db.like.findMany({
+			where: {
+				postID,
+				userID: locals.User.id
+			}
+		});
+
+		return json({ likes: likes.length });
+	}
 
 	await db.like.create({
 		data: {
