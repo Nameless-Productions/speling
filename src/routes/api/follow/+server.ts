@@ -21,7 +21,22 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 			authorID: locals.User.id
 		}
 	});
-	if (userFollows.length === 1) return error(400, 'Already following');
+	if (userFollows.length === 1) {
+		await db.follow.deleteMany({
+			where: {
+				userID: Number(body.userID),
+				authorID: locals.User.id
+			}
+		});
+
+		const follows = await db.follow.findMany({
+			where: {
+				userID: Number(body.userID)
+			}
+		});
+
+		return json({ follows: follows.length });
+	}
 
 	await db.follow.create({
 		data: {
