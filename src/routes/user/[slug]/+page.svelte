@@ -19,6 +19,7 @@
 
 	async function followUser(id: number) {
 		const res = await fetch('/api/follow', {
+			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
