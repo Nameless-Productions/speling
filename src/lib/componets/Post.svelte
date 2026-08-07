@@ -37,7 +37,7 @@
 		if (!res.ok) return;
 
 		const json = await res.json();
-		post.likes = json.likes;
+		post = { ...post, likes: json.likes };
 	}
 </script>
 
