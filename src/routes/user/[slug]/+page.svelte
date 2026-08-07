@@ -45,6 +45,12 @@
 	<div class="flex">
 		{#if data.thisUser}
 			<p class="mb-5 rounded-l-full bg-blue-600 p-1">Typos: {data.profile.user.typoCount}</p>
+			<button
+				type="button"
+				onclick={() => followUser(data.profile.user.id)}
+				class="mb-5 cursor-pointer bg-orange-800 p-1 duration-300 hover:bg-orange-900"
+				>Follow</button
+			>
 			<a href={resolve('/logout')} class="mb-5 bg-gray-600 p-1 duration-300 hover:bg-gray-500"
 				>Log out</a
 			>
@@ -60,11 +66,23 @@
 			<p class="mb-5 rounded-l-full bg-blue-600 p-1">Typos: {data.profile.user.typoCount}</p>
 			<button
 				type="button"
+				onclick={() => followUser(data.profile.user.id)}
+				class="mb-5 cursor-pointer bg-orange-800 p-1 duration-300 hover:bg-orange-900"
+				>Follow</button
+			>
+			<button
+				type="button"
 				class="mb-5 cursor-pointer rounded-r-full bg-red-600 p-1 duration-300 hover:bg-red-400"
 				onclick={() => (isDeleteOpen = !isDeleteOpen)}>Delete account</button
 			>
 		{:else}
-			<p class="mb-5 rounded-full bg-blue-600 p-1">Typos: {data.profile.user.typoCount}</p>
+			<p class="mb-5 rounded-l-full bg-blue-600 p-1">Typos: {data.profile.user.typoCount}</p>
+			<button
+				type="button"
+				onclick={() => followUser(data.profile.user.id)}
+				class="mb-5 cursor-pointer rounded-r-full bg-orange-800 p-1 duration-300 hover:bg-orange-900"
+				>Follow</button
+			>
 		{/if}
 	</div>
 
