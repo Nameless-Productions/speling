@@ -24,8 +24,7 @@ export const GET: RequestHandler = async ({ locals, url }) => {
 
 		const likes = await db.like.findMany({
 			where: {
-				postID,
-				userID: locals.User.id
+				postID
 			}
 		});
 
