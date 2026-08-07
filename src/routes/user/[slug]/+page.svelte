@@ -5,6 +5,33 @@
 
 	const { data } = $props();
 	let isDeleteOpen = $state(false);
+	let follows = $state('loading');
+
+	$effect(() => {
+		(async () => {
+			const res = await fetch(`/api/follow?userID=${data.profile.user.id}`);
+			const json = await res.json();
+			if (!res.ok) return console.error(await res.text());
+
+			follows = json.follows;
+		})();
+	});
+
+	async function followUser(id: number) {
+		const res = await fetch('/api/follow', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				userID: id
+			})
+		});
+		if (!res.ok) return;
+
+		const json = await res.json();
+		follows = json.follows;
+	}
 </script>
 
 <div class="flex flex-col items-center">
@@ -14,10 +41,17 @@
 			- You
 		{/if}
 	</p>
+	<p>Follows: {follows}</p>
 
 	<div class="flex">
-		{#if data.thisUser || data.user?.isAdmin}
+		{#if data.thisUser}
 			<p class="mb-5 rounded-l-full bg-blue-600 p-1">Typos: {data.profile.user.typoCount}</p>
+			<button
+				type="button"
+				onclick={() => followUser(data.profile.user.id)}
+				class="mb-5 cursor-pointer bg-orange-800 p-1 duration-300 hover:bg-orange-900"
+				>Follow</button
+			>
 			<a href={resolve('/logout')} class="mb-5 bg-gray-600 p-1 duration-300 hover:bg-gray-500"
 				>Log out</a
 			>
@@ -29,8 +63,27 @@
 				class="mb-5 cursor-pointer rounded-r-full bg-red-600 p-1 duration-300 hover:bg-red-400"
 				onclick={() => (isDeleteOpen = !isDeleteOpen)}>Delete account</button
 			>
+		{:else if data.user?.isAdmin}
+			<p class="mb-5 rounded-l-full bg-blue-600 p-1">Typos: {data.profile.user.typoCount}</p>
+			<button
+				type="button"
+				onclick={() => followUser(data.profile.user.id)}
+				class="mb-5 cursor-pointer bg-orange-800 p-1 duration-300 hover:bg-orange-900"
+				>Follow</button
+			>
+			<button
+				type="button"
+				class="mb-5 cursor-pointer rounded-r-full bg-red-600 p-1 duration-300 hover:bg-red-400"
+				onclick={() => (isDeleteOpen = !isDeleteOpen)}>Delete account</button
+			>
 		{:else}
-			<p class="mb-5 rounded-full bg-blue-600 p-1">Typos: {data.profile.user.typoCount}</p>
+			<p class="mb-5 rounded-l-full bg-blue-600 p-1">Typos: {data.profile.user.typoCount}</p>
+			<button
+				type="button"
+				onclick={() => followUser(data.profile.user.id)}
+				class="mb-5 cursor-pointer rounded-r-full bg-orange-800 p-1 duration-300 hover:bg-orange-900"
+				>Follow</button
+			>
 		{/if}
 	</div>
 

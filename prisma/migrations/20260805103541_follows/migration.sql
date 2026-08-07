@@ -1,0 +1,6 @@
+-- CreateTable
+CREATE TABLE "Follow" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "userID" INTEGER NOT NULL,
+    "authorID" INTEGER NOT NULL
+);
