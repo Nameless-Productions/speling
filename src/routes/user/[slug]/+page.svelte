@@ -16,6 +16,21 @@
 			follows = json.follows;
 		})();
 	});
+
+	async function followUser(id: number) {
+		const res = await fetch('/api/follow', {
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				userID: id
+			})
+		});
+		if (!res.ok) return;
+
+		const json = await res.json();
+		follows = json.follows;
+	}
 </script>
 
 <div class="flex flex-col items-center">
