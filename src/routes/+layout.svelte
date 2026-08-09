@@ -9,7 +9,7 @@
 
 <NavBar user={data.user} />
 
-<main class="m-2 flex flex-1 flex-col">
+<main class="m-2 mt-13 flex flex-1 flex-col">
 	{@render children()}
 	<div class="text-center">
 		<p>
