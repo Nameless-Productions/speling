@@ -6,7 +6,7 @@
 	const btnClass = 'text-lg hover:font-bold duration-200';
 </script>
 
-<nav class="flex items-center space-x-5 border-b-2 p-2">
+<nav class="fixed -mt-13 flex w-full items-center space-x-5 border-b-2 bg-slate-900 p-2">
 	<a href={resolve('/')} class="text-xl font-bold duration-200 hover:font-normal">speling</a>
 	<p class="-ml-4.5 text-sm text-gray-600">(yes it's like that)</p>
 
