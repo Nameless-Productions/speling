@@ -2,6 +2,12 @@
 FROM node:24-slim AS builder
 WORKDIR /app
 
+ENV ADMIN="placeholder"
+ENV DISCORD_CLIENT="placeholder"
+ENV DISCORD_REDIRECT="placeholder"
+ENV DISCORD_SECRET="placeholder"
+ENV DISCORD_URL="placeholder"
+
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
