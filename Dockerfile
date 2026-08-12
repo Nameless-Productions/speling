@@ -13,6 +13,7 @@ ENV CF_URL="test"
 ENV CF_BUCKET="test"
 ENV CDN_URL="test"
 ENV ADMIN="test"
+ENV DATABASE_URL="file:/app/prisma/database.db"
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
