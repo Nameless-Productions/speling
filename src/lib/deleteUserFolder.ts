@@ -24,7 +24,7 @@ export async function deleteUserFolder(userID: number) {
 
 			await s3.send(
 				new DeleteObjectsCommand({
-					Bucket: CF_BUCKET,
+					Bucket: env.CF_BUCKET,
 					Delete: {
 						Objects: response.Contents.map((obj) => ({
 							Key: obj.Key!
