@@ -1,7 +1,7 @@
-import { SECRET } from '$env/dynamic/private';
+import { env } from '$env/dynamic/private';
 import { jwtVerify, SignJWT } from 'jose';
 
-const secret = new TextEncoder().encode(SECRET);
+const secret = new TextEncoder().encode(env.SECRET);
 
 export async function createToken(uid: number) {
 	const token = await new SignJWT({ uid })

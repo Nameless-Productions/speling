@@ -1,6 +1,6 @@
 import { s3 } from './client';
 import { ListObjectsV2Command, DeleteObjectsCommand } from '@aws-sdk/client-s3';
-import { CF_BUCKET } from '$env/dynamic/private';
+import { env } from '$env/dynamic/private';
 
 export async function deleteUserFolder(userID: number) {
 	const prefix = `${userID}/`;
@@ -12,7 +12,7 @@ export async function deleteUserFolder(userID: number) {
 		while (isTruncated) {
 			const response = await s3.send(
 				new ListObjectsV2Command({
-					Bucket: CF_BUCKET,
+					Bucket: env.CF_BUCKET,
 					Prefix: prefix,
 					ContinuationToken: continuationToken
 				})
