@@ -2,6 +2,8 @@
 FROM node:24-slim AS builder
 WORKDIR /app
 
+RUN apt-get update -y && apt-get install -y openssl
+
 ENV SECRET="meowmeowmeow"
 ENV DISCORD_CLIENT="meow"
 ENV DISCORD_SECRET="meow"
@@ -29,6 +31,8 @@ RUN pnpm build
 FROM node:24-slim AS runner
 
 WORKDIR /app
+
+RUN apt-get update -y && apt-get install -y openssl
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
