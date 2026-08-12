@@ -2,11 +2,17 @@
 FROM node:24-slim AS builder
 WORKDIR /app
 
-ENV ADMIN="placeholder"
-ENV DISCORD_CLIENT="placeholder"
-ENV DISCORD_REDIRECT="placeholder"
-ENV DISCORD_SECRET="placeholder"
-ENV DISCORD_URL="placeholder"
+ENV SECRET="meowmeowmeow"
+ENV DISCORD_CLIENT="meow"
+ENV DISCORD_SECRET="meow"
+ENV DISCORD_URL="meow"
+ENV DISCORD_REDIRECT="meow"
+ENV CF_ACCESS_KEY="test"
+ENV CF_SECRET_KEY="test"
+ENV CF_URL="test"
+ENV CF_BUCKET="test"
+ENV CDN_URL="test"
+ENV ADMIN="test"
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
