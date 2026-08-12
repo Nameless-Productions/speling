@@ -1,6 +1,6 @@
 import { Upload } from '@aws-sdk/lib-storage';
 import { s3 } from './client';
-import { CF_BUCKET, CDN_URL } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 
 export async function uploadFile(
 	uid: number,
@@ -20,7 +20,7 @@ export async function uploadFile(
 	const upload = new Upload({
 		client: s3,
 		params: {
-			Bucket: CF_BUCKET,
+			Bucket: env.CF_BUCKET,
 			Key: key,
 			Body: body,
 			ContentType: contentType
@@ -31,7 +31,7 @@ export async function uploadFile(
 
 	try {
 		await upload.done();
-		return `${CDN_URL}/${key}`;
+		return `${env.CDN_URL}/${key}`;
 	} catch {
 		await upload.abort().catch(() => {});
 		return false;

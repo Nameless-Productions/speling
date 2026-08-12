@@ -1,6 +1,6 @@
 import { error, redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { ADMIN, DISCORD_CLIENT, DISCORD_REDIRECT, DISCORD_SECRET } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import { db } from '$lib/db';
 import { createToken } from '$lib/jwt';
 
@@ -9,11 +9,11 @@ export const GET: RequestHandler = async ({ cookies, locals, url }) => {
 	if (!code) return error(400, 'Code not found in search params');
 
 	const params = new URLSearchParams({
-		client_id: DISCORD_CLIENT,
-		client_secret: DISCORD_SECRET,
+		client_id: env.DISCORD_CLIENT,
+		client_secret: env.DISCORD_SECRET,
 		grant_type: 'authorization_code',
 		code,
-		redirect_uri: DISCORD_REDIRECT
+		redirect_uri: env.DISCORD_REDIRECT
 	});
 
 	const tokenRes = await fetch('https://discord.com/api/oauth2/token', {
@@ -61,7 +61,7 @@ export const GET: RequestHandler = async ({ cookies, locals, url }) => {
 	await db.user.update({
 		where: userDB,
 		data: {
-			isAdmin: ADMIN === username
+			isAdmin: env.ADMIN === username
 		}
 	});
 

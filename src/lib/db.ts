@@ -1,9 +1,9 @@
 import { PrismaLibSql } from '@prisma/adapter-libsql';
 import { PrismaClient } from './generated/prisma/client';
-import { DATABASE_URL } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 
 const adapter = new PrismaLibSql({
-	url: DATABASE_URL
+	url: env.DATABASE_URL
 });
 
 export const db = new PrismaClient({ adapter });
