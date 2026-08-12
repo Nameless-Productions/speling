@@ -21,7 +21,7 @@ RUN apt-get update -y && apt-get install -y openssl
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml prisma.config.ts ./
 COPY prisma ./prisma/
 
 RUN pnpm install --frozen-lockfile
@@ -43,6 +43,7 @@ COPY --from=builder /app/pnpm-workspace.yaml ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/prisma.config.ts ./
 
 EXPOSE 3000
 CMD ["sh", "-c", "pnpm prisma migrate deploy && node build"]
