@@ -1,4 +1,4 @@
-import { CF_ACCESS_KEY, CF_SECRET_KEY, CF_URL } from '$env/static/private';
+import { CF_ACCESS_KEY, CF_SECRET_KEY, CF_URL } from '$env/dynamic/private';
 import { S3Client } from '@aws-sdk/client-s3';
 
 export const s3 = new S3Client({

@@ -1,6 +1,6 @@
 import { s3 } from './client';
 import { ListObjectsV2Command, DeleteObjectsCommand } from '@aws-sdk/client-s3';
-import { CF_BUCKET } from '$env/static/private';
+import { CF_BUCKET } from '$env/dynamic/private';
 
 export async function deleteUserFolder(userID: number) {
 	const prefix = `${userID}/`;

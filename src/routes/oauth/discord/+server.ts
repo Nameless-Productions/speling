@@ -1,6 +1,6 @@
 import { error, redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { ADMIN, DISCORD_CLIENT, DISCORD_REDIRECT, DISCORD_SECRET } from '$env/static/private';
+import { ADMIN, DISCORD_CLIENT, DISCORD_REDIRECT, DISCORD_SECRET } from '$env/dynamic/private';
 import { db } from '$lib/db';
 import { createToken } from '$lib/jwt';
 

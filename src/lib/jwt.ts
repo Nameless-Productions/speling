@@ -1,4 +1,4 @@
-import { SECRET } from '$env/static/private';
+import { SECRET } from '$env/dynamic/private';
 import { jwtVerify, SignJWT } from 'jose';
 
 const secret = new TextEncoder().encode(SECRET);

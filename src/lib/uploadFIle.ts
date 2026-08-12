@@ -1,6 +1,6 @@
 import { Upload } from '@aws-sdk/lib-storage';
 import { s3 } from './client';
-import { CF_BUCKET, CDN_URL } from '$env/static/private';
+import { CF_BUCKET, CDN_URL } from '$env/dynamic/private';
 
 export async function uploadFile(
 	uid: number,
