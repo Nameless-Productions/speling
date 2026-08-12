@@ -46,4 +46,4 @@ ENV PORT=5190
 ENV HOST=0.0.0.0
 ENV DATABASE_URL="file:/app/prisma/database.db"
 EXPOSE 5190
-CMD ["sh", "-c", "pnpm prisma migrate deploy && node build"]
+CMD ["sh", "-c", "DATABASE_URL=\"$DATABASE_URL\" npx prisma migrate deploy && node build"]
