@@ -3,6 +3,19 @@
 FROM node:24-slim AS builder
 WORKDIR /app
 
+ENV SECRET="test"
+ENV DISCORD_CLIENT="test"
+ENV DISCORD_SECRET="test"
+ENV DISCORD_URL="test"
+ENV DISCORD_REDIRECT="test"
+ENV CF_ACCESS_KEY="test"
+ENV CF_SECRET_KEY="test"
+ENV CF_URL="test"
+ENV CF_BUCKET="test"
+ENV CDN_URL="test"
+ENV ADMIN="test"
+ENV DATABASE_URL="file:test"
+
 # prisma needs these
 RUN apt-get update -y && apt-get install -y openssl
 
